@@ -28,7 +28,7 @@ class Parser {
 	/**
 	 * Length of the paragraph ID
 	 */
-	const IDLENGTH = 6;
+	const KEYLENGTH = 6;
 
 	public function __construct($data) {
 		$this->data = $data;
@@ -56,7 +56,7 @@ class Parser {
 
 		$best_key = false;
 		$best_distance = 3;
-		$length = self::IDLENGTH / 2;
+		$length = self::KEYLENGTH / 2;
 
 		// Check for exact match
 		if ( ! empty( $paragraphs[ $key ] ) )
@@ -124,7 +124,7 @@ class Parser {
 			return '';
 		}
 
-		// Get the first IDLENGTH/2 words from the first and last sentences
+		// Get the first KEYLENGTH/2 words from the first and last sentences
 		//
 		// This is intentionally the same if there's only one sentence, as per
 		// Emphasis' behaviour
@@ -138,8 +138,8 @@ class Parser {
 		$key = array_reduce( $k, __CLASS__ . '::reduce_words' );
 
 		// Check key length
-		if (strlen($key) > self::IDLENGTH) {
-			$key = substr($key, 0, self::IDLENGTH);
+		if (strlen($key) > self::KEYLENGTH) {
+			$key = substr($key, 0, self::KEYLENGTH);
 		}
 
 		return $key;
@@ -165,15 +165,15 @@ class Parser {
 	/**
 	 * Convert a sentence to a list of words
 	 *
-	 * Gets the words from a sentence, with a maximum of IDLENGTH / 2 words
+	 * Gets the words from a sentence, with a maximum of KEYLENGTH / 2 words
 	 *
 	 * @param string $line
-	 * @return array First IDLENGTH / 2 words from the sentence
+	 * @return array First KEYLENGTH / 2 words from the sentence
 	 */
 	protected static function words_from_sentence($line) {
 		// Replace double spaces (and more) with single spaces
 		$line = preg_replace('/[\s\s]+/i', ' ', $line);
-		return array_slice(explode(' ', $line), 0, self::IDLENGTH / 2);
+		return array_slice(explode(' ', $line), 0, self::KEYLENGTH / 2);
 	}
 
 	/**
