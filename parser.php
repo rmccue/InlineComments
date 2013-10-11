@@ -80,15 +80,15 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	protected function get_paragraphs() {
+	public function get_paragraphs() {
 		if ( ! empty( $this->paragraphs ) ) {
 		  return $this->paragraphs;
 		}
 
-		$paragraph_elements = $this->document->getElementsByTagName( 'p' );
+		$paragraph_elements = $this->document->getElementsByTagName('body')->item(0)->childNodes;
 
 		foreach ($paragraph_elements as $paragraph) {
-			if ( empty( $paragraph->textContent ) ) {
+			if ( ! ( $paragraph instanceof DOMElement ) || empty( $paragraph->textContent ) ) {
 				continue;
 			}
 
