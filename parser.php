@@ -35,6 +35,7 @@ class Parser {
 	}
 
 	public function parse() {
+		if ( empty($this->data) ) return;
 		$this->document = new DOMDocument();
 		$this->document->loadHTML($this->data);
 
