@@ -157,7 +157,7 @@ class Parser {
 		$last = self::words_from_sentence( array_pop( $sentences ) );
 
 		// Combine words into a single array to pick from
-		$k = array_merge( $first, $last );
+		$k = array_filter( array_merge( $first, $last ) );
 
 		// Reduce words to a single key
 		$key = array_reduce( $k, __CLASS__ . '::reduce_words' );
