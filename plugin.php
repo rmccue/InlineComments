@@ -12,10 +12,12 @@ namespace InlineComments;
 require __DIR__ . '/parser.php';
 require __DIR__ . '/replacements.php';
 
-add_filter( 'the_content', __NAMESPACE__ . '\\test_content' );
-function test_content($content) {
-	$parser = new Parser($content);
-	$parser->parse();
+add_filter( 'the_content', __NAMESPACE__ . '\\test_content', 1000, 2 );
+function test_content($content, $id = null) {
+	if ( empty( $id ) ) {
+		$id = get_the_ID();
+	}
 
-	return $content;
+	$parser = new Parser($content, $id);
+	return $parser->parse();
 }

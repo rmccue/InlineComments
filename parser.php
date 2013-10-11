@@ -30,8 +30,9 @@ class Parser {
 	 */
 	const KEYLENGTH = 6;
 
-	public function __construct($data) {
+	public function __construct($data, $id) {
 		$this->data = $data;
+		$this->id = $id;
 	}
 
 	public function parse() {
@@ -142,7 +143,7 @@ class Parser {
 			$key = substr($key, 0, self::KEYLENGTH);
 		}
 
-		return $key;
+		return sprintf('%s-%s', $this->id, $key);
 	}
 
 	/**
