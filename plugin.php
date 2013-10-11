@@ -21,3 +21,16 @@ function test_content($content, $id = null) {
 	$parser = new Parser($content, $id);
 	return $parser->parse();
 }
+
+apply_filters( 'comment_class', __NAMESPACE__ . '\\comment_class', 10, 4 );
+
+function comment_class($classes, $class, $comment_id, $post_id) {
+	$attached_paragraph = get_comment_meta( $comment_id, '_inlinecomments_paragraphkey', true );
+	if ( empty( $attached_paragraph ) ) {
+		return $classes;
+	}
+
+	$classes[] = 'inlinecomment';
+	$classes[] = sprintf( 'inlinecomment-%s', esc_attr( $attached_paragraph ) );
+	return $classes;
+}
