@@ -133,6 +133,9 @@ class Parser {
 		if ( $paragraph instanceof DOMElement ) {
 			$paragraph = $paragraph->textContent;
 		}
+		if ( ! is_string( $paragraph ) ) {
+			return '';
+		}
 
 		// Strip non-alphabetical (and dot) characters
 		$paragraph = preg_replace('/\s+/i', ' ', $paragraph);
