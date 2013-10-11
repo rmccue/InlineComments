@@ -35,10 +35,21 @@ class Parser {
 		$this->id = $id;
 	}
 
+	protected function preprocess($html) {
+		$ret = '<!DOCTYPE html><html><head>';
+		$ret .= sprintf(
+			'<meta http-equiv="Content-Type" content="text/html; charset=%s" />',
+			get_option( 'blog_charset' )
+		);
+		$ret .= '</head><body>' . $html . '</body></html>';
+		return $ret;
+	}
+
 	public function parse() {
 		if ( empty($this->data) ) return;
 		$this->document = new DOMDocument();
-		$this->document->loadHTML($this->data);
+		$processed = $this->preprocess($this->data);
+		$this->document->loadHTML($processed);
 
 		// Parse the paragraphs out
 		return $this->add_ids();
