@@ -135,6 +135,7 @@ class Parser {
 		}
 
 		// Strip non-alphabetical (and dot) characters
+		$paragraph = preg_replace('/\s+/i', ' ', $paragraph);
 		$text = preg_replace( '/[^A-Z\. ]+/i', '', $paragraph );
 		
 		if ( empty( $text ) ) {
