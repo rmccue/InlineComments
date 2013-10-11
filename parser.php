@@ -41,7 +41,19 @@ class Parser {
 		$this->document->loadHTML($this->data);
 
 		// Parse the paragraphs out
-		$this->get_paragraphs();
+		return $this->add_ids();
+	}
+
+	public function add_ids() {
+		foreach ( $this->get_paragraphs() as $pkey => $paragraph ) {
+			$attr = $this->document->createAttribute('data-paragraphkey');
+			$attr->value = $pkey;
+
+			$paragraph->appendChild($attr);
+		}
+
+		$html = $this->document->saveHTML($this->document->getElementsByTagName('body')->item(0));
+		return preg_replace('#^<body>(.*)</body>$#is', '$1', $html);
 	}
 
 	/**
