@@ -63,9 +63,8 @@
 				$(this).removeClass('active');
 			})
 			.on('click', '.inlinecomments-button', function () {
-				var $para = $(this).closest('.inlinecomments-enabled');
-				var pkey = $para.data('paragraphkey');
-				console.log(pkey);
+				var key = $(this).data('paragraphkey');
+				// open the model here, or whatever
 			});
 	});
 })(jQuery);
