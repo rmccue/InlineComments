@@ -34,3 +34,15 @@ function comment_class($classes, $class, $comment_id, $post_id) {
 	$classes[] = sprintf( 'inlinecomments-%s', esc_attr( $attached_paragraph ) );
 	return $classes;
 }
+
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_style' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_script' );
+
+function enqueue_style() {
+	wp_register_style( 'inlinecomments-genericons', plugins_url( 'static/css/genericons.css', __FILE__ ) );
+	wp_enqueue_style( 'inlinecomments', plugins_url( 'static/css/comments.css', __FILE__ ), array( 'inlinecomments-genericons' ) );
+}
+
+function enqueue_script() {
+	wp_enqueue_script( 'inlinecomments', plugins_url( 'static/js/comments.js', __FILE__ ), array( 'jquery' ) );
+}

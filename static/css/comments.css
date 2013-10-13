@@ -1,0 +1,23 @@
+.inlinecomments-button {
+	height: 20px;
+	display: block;
+	float: right;
+	cursor: pointer;
+	position: absolute;
+	padding-left: 10px;
+
+	visibility: hidden;
+}
+.inlinecomments-button,
+.inlinecomments-button .ic-genericon {
+	font-size: 18px;
+	line-height: 1;
+}
+.inlinecomments-button .ic-genericon {
+	width: 18px;
+	height: 18px;
+}
+
+.inlinecomments-button.active {
+	visibility: visible;
+}
