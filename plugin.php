@@ -30,7 +30,7 @@ function comment_class($classes, $class, $comment_id, $post_id) {
 		return $classes;
 	}
 
-	$classes[] = 'inlinecomment';
-	$classes[] = sprintf( 'inlinecomment-%s', esc_attr( $attached_paragraph ) );
+	$classes[] = 'inlinecomments-comment';
+	$classes[] = sprintf( 'inlinecomments-%s', esc_attr( $attached_paragraph ) );
 	return $classes;
 }
