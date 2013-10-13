@@ -57,10 +57,11 @@ class Parser {
 
 	public function add_ids() {
 		foreach ( $this->get_paragraphs() as $pkey => $paragraph ) {
+			// Set the paragraphkey attribute
 			$attr = $this->document->createAttribute('data-paragraphkey');
 			$attr->value = $pkey;
+			$paragraph->setAttribute('data-paragraphkey', $pkey);
 
-			$paragraph->appendChild($attr);
 		}
 
 		$html = $this->document->saveHTML($this->document->getElementsByTagName('body')->item(0));
