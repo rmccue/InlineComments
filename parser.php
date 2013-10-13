@@ -62,6 +62,15 @@ class Parser {
 			$attr->value = $pkey;
 			$paragraph->setAttribute('data-paragraphkey', $pkey);
 
+			// Also add the inlinecomments-enabled class
+			$classes = $paragraph->getAttribute('class');
+			if (empty($classes)) {
+				$classes = 'inlinecomments-enabled';
+			}
+			else {
+				$classes .= ' inlinecomments-enabled';
+			}
+			$paragraph->setAttribute('class', $classes);
 		}
 
 		$html = $this->document->saveHTML($this->document->getElementsByTagName('body')->item(0));
